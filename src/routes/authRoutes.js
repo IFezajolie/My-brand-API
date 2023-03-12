@@ -22,16 +22,19 @@
 
 const express = require('express');
 const router = express.Router();
-const { login } = require('../controllers/authController');
+const { login } = require('../controllers/usercontroller');
 const { authMiddleware, userById } = require('../middlewares/auth');
 const { getProfile } = require('../controllers/user');
 const userRoutes = require('./userRoutes');
+const { auth } = require('./auth');
+
+
 
 router.use(userRoutes);
 
 router.post('/login', login);
 
-router.get('/profile/:userId', authMiddleware, getProfile);
-router.param('userId', userById);
+router.get('/profile/:userId', auth.authMiddleware, getProfile);
+router.param('userId', auth.userById);
 
 module.exports = router;

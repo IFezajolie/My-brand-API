@@ -4,7 +4,7 @@ const User = require('../models/User');
 
 // Middleware to authenticate requests
 exports.authMiddleware = expressJwt({
-  secret: 'your-secret-key', // replace with your own secret key
+  secret: 'process.env.SECRET_KEY', // replace with your own secret key
   algorithms: ['HS256'],
   getToken: (req) => req.cookies.token,
 });

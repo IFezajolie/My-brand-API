@@ -35,6 +35,6 @@ const {
 const userRoutes = require('./userRoutes');
 router.use(userRoutes);
 router.post('/login', login);
-router.get('/profile/:userId', authMiddleware, getProfile);
+router.get('/profile/:userId', getProfile);
 router.param('userId', userById);
 module.exports = router;
