@@ -6,3 +6,5 @@ mongoose.connect('mongodb://localhost/myapp', {
 })
   .then(() => console.log('MongoDB connected'))
   .catch(err => console.log(err));
+ 
+  

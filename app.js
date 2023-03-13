@@ -4,8 +4,11 @@ const dotenv = require('dotenv');
 const cors = require('cors');
 const bodyparser = require('body-parser');
 const cookieparser = require('cookie-parser');
-
-
+const createBlog = require('./src/routes/blogRoutes.js');
+const fetchBlog = require('./src/routes/blogRoutes.js');
+const fetchSingleBlog = require('./src/routes/blogRoutes.js');
+const deleteBlog = require('./src/routes/blogRoutes.js');
+const findBlog = require('./src/routes/blogRoutes.js');
 
 //setup environment of variables
 dotenv.config();
@@ -14,10 +17,10 @@ dotenv.config();
 const app = express();
 
 app.use(cors());
-app.use(bodyParser.json());
+app.use(bodyparser.json());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cookieParser());
+app.use(cookieparser());
 
 //defining Home routes
 app.get("/", (req, res) => {
@@ -39,7 +42,11 @@ if (process.env.NODE_ENV === "test") {
     });
 }
 if (con) {
-    console.log('Database has been connected')
+   console.log('Database has been connected')
 }
-
-export default app;
+app.use('/myAPI',createBlog)
+app.use('/myAPI',fetchBlog)
+app.use('/myAPI',fetchSingleBlog)
+app.use('myAPI',deleteBlog)
+app.use('myAPI',findBlog)
+module.exports = app;
