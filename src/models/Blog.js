@@ -1,9 +1,15 @@
 const mongoose = require ('mongoose');
+const fs = require ('fs');
 
 const blogSchema = new mongoose.Schema({
     title: {
         type: String,
         required: true,
+    },
+  
+        image: {
+            data: Buffer,
+            contentType: String,
     },
     body: {
         type: String,

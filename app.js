@@ -1,4 +1,7 @@
+//creating an instance of express server
 const express  = require('express');
+const app = express();
+
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
 const cors = require('cors');
@@ -10,11 +13,19 @@ const fetchSingleBlog = require('./src/routes/blogRoutes.js');
 const deleteBlog = require('./src/routes/blogRoutes.js');
 const findBlog = require('./src/routes/blogRoutes.js');
 
+const myRouter = require('./myRouter');
+app.use('/api', myRouter);
+
+//User login
+// app.use(
+//     cookieSession({
+//         name: "IFezaaJolie",
+
+//     })
+
 //setup environment of variables
 dotenv.config();
 
-//creating an instance of express server
-const app = express();
 
 app.use(cors());
 app.use(bodyparser.json());
@@ -50,3 +61,4 @@ app.use('/myAPI',fetchSingleBlog)
 app.use('myAPI',deleteBlog)
 app.use('myAPI',findBlog)
 module.exports = app;
+
